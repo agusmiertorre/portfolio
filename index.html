@@ -305,42 +305,6 @@ html[data-theme="light"] .theme-toggle .moon{display:none}
 
 .hero__cta{display:flex; flex-wrap:wrap; align-items:center; gap:.7rem}
 
-/* Ilustración de placa + protoboard bajo los CTA */
-.hero__art{
-  margin-top:clamp(1.6rem,3vw,2.2rem);
-  padding:1rem 1.1rem;
-  border:1px solid var(--line); border-radius:var(--r-lg);
-  background:
-    linear-gradient(135deg, color-mix(in srgb,var(--brand) 7%, transparent), transparent 60%),
-    var(--card);
-  position:relative; overflow:hidden;
-  --accent:var(--brand-soft);
-  transition:border-color var(--t), background var(--t);
-}
-.hero__art::before{
-  content:''; position:absolute; inset:0; z-index:0; opacity:.55;
-  background-image:
-    linear-gradient(var(--grid-line) 1px,transparent 1px),
-    linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);
-  background-size:24px 24px;
-  -webkit-mask-image:radial-gradient(ellipse 80% 90% at 50% 50%, #000, transparent 75%);
-  mask-image:radial-gradient(ellipse 80% 90% at 50% 50%, #000, transparent 75%);
-}
-.hero__art:hover{border-color:var(--line-strong)}
-.hero__art svg{position:relative; z-index:1; width:100%; height:auto; display:block}
-.hero__art figcaption{
-  position:relative; z-index:1; margin-top:.5rem;
-  font-family:var(--font-mono); font-size:.64rem; letter-spacing:.12em;
-  text-transform:uppercase; color:var(--txt-mute);
-  display:flex; align-items:center; gap:.45rem;
-}
-.hero__art figcaption svg{width:13px; height:13px; color:var(--accent)}
-@media (prefers-reduced-motion: no-preference){
-  .hero__art .pulse{animation:blip 2.6s var(--ease) infinite}
-  .hero__art .pulse2{animation:blip 2.6s var(--ease) .9s infinite}
-}
-@keyframes blip{0%,100%{opacity:.25}45%{opacity:1}}
-
 /* Hero visual */
 .hero__stats{
   display:grid; grid-template-columns:repeat(2,1fr); gap:.7rem; margin-top:.9rem;
@@ -512,12 +476,12 @@ html[data-theme="light"] .theme-toggle .moon{display:none}
   text-transform:uppercase; color:var(--txt-mute);
 }
 .shot__art{width:100%; height:100%; display:block}
-.shot__art .st,.hero__art .st{fill:none; stroke:var(--txt); stroke-opacity:.45; stroke-width:2; stroke-linecap:round; stroke-linejoin:round}
-.shot__art .ac,.hero__art .ac{fill:none; stroke:var(--accent,var(--brand)); stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round}
-.shot__art .fl,.hero__art .fl{fill:var(--accent,var(--brand)); fill-opacity:.18; stroke:none}
-.shot__art .dot,.hero__art .dot{fill:var(--txt); fill-opacity:.22}
-.shot__art .glow,.hero__art .glow{fill:var(--accent,var(--brand)); fill-opacity:.9}
-.shot:hover .shot__art .ac,.hero__art .ac{stroke-dasharray:none}
+.shot__art .st{fill:none; stroke:var(--txt); stroke-opacity:.45; stroke-width:2; stroke-linecap:round; stroke-linejoin:round}
+.shot__art .ac{fill:none; stroke:var(--accent,var(--brand)); stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round}
+.shot__art .fl{fill:var(--accent,var(--brand)); fill-opacity:.18; stroke:none}
+.shot__art .dot{fill:var(--txt); fill-opacity:.22}
+.shot__art .glow{fill:var(--accent,var(--brand)); fill-opacity:.9}
+.shot:hover .shot__art .ac{stroke-dasharray:none}
 .shot__tag{
   position:absolute; left:.7rem; top:.7rem; z-index:2;
   font-family:var(--font-mono); font-size:.6rem; letter-spacing:.12em; text-transform:uppercase;
@@ -879,7 +843,7 @@ kbd{
     --bg:#fff; --bg-elev:#fff; --shadow:none; --shadow-sm:none;
   }
   .site-header,.to-top,.marquee,.hero__bg,.nav__actions,.filters,
-  .hero__cta,.hero__art,.footer__social .icon-btn,.no-print,.shot__media,.kbd-hint,.cmdk{display:none !important}
+  .hero__cta,.footer__social .icon-btn,.no-print,.shot__media,.kbd-hint,.cmdk{display:none !important}
   .hero{padding:0 0 .6rem !important}
   .section{padding:.7rem 0 !important; break-inside:auto}
   .wrap{max-width:none; padding:0}
@@ -1055,8 +1019,8 @@ kbd{
       <p class="hero__lead reveal" data-d="2">
         Diseño y facilito experiencias de <strong>robótica, programación, electrónica y fabricación
         digital</strong> para adolescentes y jóvenes, con <strong>aprendizaje basado en proyectos (PBL)</strong>.
-        Más de 4 años llevando la cultura maker al aula: del prototipo en protoboard al producto
-        que los estudiantes muestran con orgullo.
+        Y dicto <strong>capacitaciones de IA aplicada para adultos</strong>: equipos docentes,
+        profesionales y organizaciones que necesitan incorporar estas herramientas a su trabajo.
       </p>
 
       <ul class="badges reveal" data-d="3" aria-label="Áreas de especialidad">
@@ -1083,55 +1047,6 @@ kbd{
         </a>
       </div>
 
-      <figure class="hero__art reveal" data-d="5">
-        <svg viewBox="0 0 440 150" role="img"
-             aria-label="Ilustración de una placa Arduino cableada a una protoboard: dos LEDs encendidos y un potenciómetro.">
-          <!-- protoboard -->
-          <rect class="fl" x="230" y="30" width="196" height="96" rx="7"/>
-          <rect class="st" x="230" y="30" width="196" height="96" rx="7"/>
-          <path class="st" d="M230 78h196"/>
-          <g class="dot">
-            <circle cx="250" cy="48" r="2.6"/><circle cx="270" cy="48" r="2.6"/><circle cx="290" cy="48" r="2.6"/>
-            <circle cx="310" cy="48" r="2.6"/><circle cx="330" cy="48" r="2.6"/><circle cx="350" cy="48" r="2.6"/>
-            <circle cx="370" cy="48" r="2.6"/><circle cx="390" cy="48" r="2.6"/><circle cx="410" cy="48" r="2.6"/>
-            <circle cx="250" cy="64" r="2.6"/><circle cx="270" cy="64" r="2.6"/><circle cx="290" cy="64" r="2.6"/>
-            <circle cx="310" cy="64" r="2.6"/><circle cx="330" cy="64" r="2.6"/><circle cx="350" cy="64" r="2.6"/>
-            <circle cx="370" cy="64" r="2.6"/><circle cx="390" cy="64" r="2.6"/><circle cx="410" cy="64" r="2.6"/>
-            <circle cx="250" cy="92" r="2.6"/><circle cx="270" cy="92" r="2.6"/><circle cx="290" cy="92" r="2.6"/>
-            <circle cx="310" cy="92" r="2.6"/><circle cx="330" cy="92" r="2.6"/><circle cx="350" cy="92" r="2.6"/>
-            <circle cx="370" cy="92" r="2.6"/><circle cx="390" cy="92" r="2.6"/><circle cx="410" cy="92" r="2.6"/>
-            <circle cx="250" cy="108" r="2.6"/><circle cx="270" cy="108" r="2.6"/><circle cx="290" cy="108" r="2.6"/>
-            <circle cx="310" cy="108" r="2.6"/><circle cx="330" cy="108" r="2.6"/><circle cx="350" cy="108" r="2.6"/>
-            <circle cx="370" cy="108" r="2.6"/><circle cx="390" cy="108" r="2.6"/><circle cx="410" cy="108" r="2.6"/>
-          </g>
-
-          <!-- placa Arduino -->
-          <rect class="fl" x="14" y="38" width="150" height="80" rx="7"/>
-          <rect class="ac" x="14" y="38" width="150" height="80" rx="7"/>
-          <rect class="st" x="34" y="56" width="42" height="30" rx="3"/>
-          <path class="st" d="M92 60h50M92 70h50M92 80h36"/>
-          <rect class="st" x="22" y="30" width="46" height="9" rx="2"/>
-          <rect class="st" x="98" y="117" width="46" height="9" rx="2"/>
-          <circle class="dot" cx="26" cy="110" r="3"/><circle class="dot" cx="152" cy="46" r="3"/>
-
-          <!-- cables -->
-          <path class="ac" d="M164 60c36 0 30-12 66-12"/>
-          <path class="ac" d="M164 82c36 0 30 22 66 22"/>
-          <path class="st" d="M164 71c30 0 34 5 66 5"/>
-
-          <!-- LEDs y potenciómetro -->
-          <circle class="glow pulse" cx="196" cy="24" r="5"/>
-          <path class="ac" d="M196 30v10"/>
-          <circle class="glow pulse2" cx="206" cy="134" r="5"/>
-          <path class="ac" d="M206 128v-10"/>
-          <circle class="st" cx="330" cy="20" r="11"/>
-          <path class="ac" d="M330 20v-7M330 31v9"/>
-        </svg>
-        <figcaption>
-          <svg class="ico" aria-hidden="true"><use href="#i-circuit-board"></use></svg>
-          Arduino + protoboard · lo que armamos en el taller
-        </figcaption>
-      </figure>
     </div>
 
     <div class="hero__visual reveal" data-d="3">
@@ -1177,7 +1092,7 @@ kbd{
         </div>
         <div class="stat">
           <div class="stat__num">IA</div>
-          <div class="stat__lbl">Aplicada al aula y al desarrollo</div>
+          <div class="stat__lbl">Capacitaciones para jóvenes y adultos</div>
         </div>
       </div>
     </div>
@@ -1230,8 +1145,10 @@ kbd{
       </p>
       <p>
         Me especializo además en <strong>desarrollo asistido con IA y automatización</strong>, tanto
-        para acelerar el prototipado de firmware y aplicaciones web como para capacitar a equipos
-        docentes en el uso responsable de estas herramientas.
+        para acelerar el prototipado de firmware y aplicaciones web como para
+        <strong>dictar talleres y capacitaciones de IA a personas adultas</strong>: equipos docentes,
+        profesionales y organizaciones que quieren usar estas herramientas con criterio, sin
+        depender de recetas.
       </p>
       <p>
         Lo que traigo a un equipo: <strong>resolución de problemas, pensamiento crítico y trabajo
@@ -1540,15 +1457,17 @@ kbd{
           <span class="pcard__ico" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-brain-circuit"></use></svg></span>
           <span class="pcard__cat">Automatización &amp; IA</span>
         </div>
-        <h3>Capacitación Docente en IA y Herramientas Digitales</h3>
+        <h3>Talleres de IA para Adultos y Equipos de Trabajo</h3>
         <p class="pcard__desc">
-          Talleres para equipos docentes sobre uso de LLMs (Claude, Gemini), diseño didáctico
-          en Canva, generación de imágenes y música con IA, y adaptaciones curriculares
-          asistidas.
+          Capacitaciones presenciales y remotas para <strong>público adulto</strong>: equipos
+          docentes, profesionales y organizaciones. Uso de LLMs (Claude, Gemini) aplicado al
+          trabajo real, diseño en Canva, generación de imágenes y música con IA, prompting con
+          criterio y, en el caso educativo, adaptaciones curriculares asistidas.
         </p>
         <ul class="tags" aria-label="Tecnologías">
-          <li class="tag">IA Educativa</li><li class="tag">Canva</li>
-          <li class="tag">Prompt Engineering</li><li class="tag">Formación</li>
+          <li class="tag">Formación de adultos</li><li class="tag">IA Aplicada</li>
+          <li class="tag">Canva</li><li class="tag">Prompt Engineering</li>
+          <li class="tag">Capacitación in company</li>
         </ul>
       </article>
 
@@ -1575,12 +1494,8 @@ kbd{
 
     <div class="grid-gallery">
 
-      <!--
-        ▸ PARA PONER LA FOTO REAL: reemplazá todo el <svg class="shot__art"> … </svg>
-          por la imagen, y borrá el <span class="shot__tag">. El CSS ya aplica object-fit
-          y el zoom en hover:
-          <img src="img/usina-makey.jpg" alt="…" loading="lazy" width="1200" height="900">
-      -->
+      <!-- Ilustraciones propias. Si alguna vez se cambian por fotos: reemplazar el
+           <svg class="shot__art"> por un <img> y borrar el <span class="shot__tag">. -->
       <figure class="shot reveal" style="--accent:var(--maker)">
         <div class="shot__media">
           <span class="shot__tag">Ilustración</span>
@@ -1788,7 +1703,8 @@ kbd{
           <li class="chip">Aprendizaje por proyectos (PBL)</li><li class="chip">Diseño de secuencias didácticas</li>
           <li class="chip">Facilitación de grupos 12–18</li><li class="chip">Trabajo colaborativo</li>
           <li class="chip">Error productivo &amp; iteración</li><li class="chip">Muestras y showcase final</li>
-          <li class="chip">Capacitación docente</li><li class="chip">Gestión de laboratorio</li>
+          <li class="chip">Capacitación docente</li><li class="chip">Formación de adultos</li>
+          <li class="chip">Gestión de laboratorio</li>
           <li class="chip">Resolución de problemas</li><li class="chip">Pensamiento crítico</li>
           <li class="chip">Seguridad en el taller</li>
         </ul>

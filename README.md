@@ -60,21 +60,17 @@ Los cuatro recuadros de abajo (`.stat`) son deliberadamente cualitativos —
 más corto, en la timeline de experiencia hay un comentario marcando los dos empleos no técnicos
 que se pueden borrar.
 
-## Cómo agregar las fotos reales
+## Sobre las imágenes
 
-Las cuatro tarjetas de `#taller` traen **ilustraciones SVG propias**, no fotos: están
-etiquetadas como "Ilustración" justamente para no hacer pasar un dibujo por documentación
-de un taller real. Cuando tengas las fotos, reemplazá el `<svg class="shot__art">…</svg>`
-entero y borrá el `<span class="shot__tag">Ilustración</span>`:
+La foto de perfil va embebida como `data:` URI dentro del HTML.
 
-```html
-<img src="img/taller-arduino.jpg"
-     alt="Estudiantes programando una placa Arduino en el taller"
-     loading="lazy" width="1200" height="900">
-```
+Las cuatro tarjetas de `#taller` llevan **ilustraciones SVG propias**, no fotos, y están
+rotuladas como "Ilustración" para no hacer pasar un dibujo por documentación de un taller
+real. Son vectoriales, responden al tema claro/oscuro y no pesan casi nada.
 
-Las fotos van en una carpeta `img/` junto al HTML. Relación de aspecto recomendada: **4:3**.
-Si preferís mantener el archivo 100 % autocontenido, se pueden embeber como `data:` URI en base64.
+Si alguna vez se cambian por fotos: reemplazar el `<svg class="shot__art">…</svg>` entero
+por un `<img>` (el CSS ya aplica `object-fit: cover` y el zoom en hover) y borrar el
+`<span class="shot__tag">Ilustración</span>`. Relación de aspecto recomendada: **4:3**.
 
 ## Personalización rápida
 
