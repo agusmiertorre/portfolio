@@ -98,7 +98,12 @@ body{
   transition:background .4s var(--ease), color .4s var(--ease);
 }
 img,svg{display:block; max-width:100%}
-.brand-ico{width:1em; height:1em; fill:currentColor; flex:none}
+.ico{
+  width:1em; height:1em; flex:none;
+  fill:none; stroke:currentColor; stroke-width:2;
+  stroke-linecap:round; stroke-linejoin:round;
+}
+.brand-ico{width:1em; height:1em; fill:currentColor; stroke:none; flex:none}
 button,input,textarea{font:inherit; color:inherit}
 a{color:inherit; text-decoration:none}
 ul,ol{list-style:none; padding:0}
@@ -487,6 +492,21 @@ html[data-theme="light"] .theme-toggle .moon{display:none}
   font-family:var(--font-mono); font-size:.68rem; letter-spacing:.12em;
   text-transform:uppercase; color:var(--txt-mute);
 }
+.shot__art{width:100%; height:100%; display:block}
+.shot__art .st{fill:none; stroke:var(--txt); stroke-opacity:.45; stroke-width:2; stroke-linecap:round; stroke-linejoin:round}
+.shot__art .ac{fill:none; stroke:var(--accent,var(--brand)); stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round}
+.shot__art .fl{fill:var(--accent,var(--brand)); fill-opacity:.18; stroke:none}
+.shot__art .dot{fill:var(--txt); fill-opacity:.22}
+.shot__art .glow{fill:var(--accent,var(--brand)); fill-opacity:.9}
+.shot:hover .shot__art .ac{stroke-dasharray:none}
+.shot__tag{
+  position:absolute; left:.7rem; top:.7rem; z-index:2;
+  font-family:var(--font-mono); font-size:.6rem; letter-spacing:.12em; text-transform:uppercase;
+  padding:.24rem .5rem; border-radius:6px; color:var(--txt-mute);
+  background:color-mix(in srgb, var(--bg) 72%, transparent); border:1px solid var(--line);
+}
+.shot__media{position:relative}
+
 .shot__body{padding:1.1rem 1.2rem 1.3rem}
 .shot__body h3{font-size:1rem; margin-bottom:.4rem}
 .shot__body p{font-size:.88rem; color:var(--txt-soft)}
@@ -899,13 +919,51 @@ kbd{
 <body>
 
 <!-- Logos de marca como SVG inline: Lucide quitó los íconos de marca de su set. -->
+<!-- Sprite de iconos: todo inline, sin CDN. Trazo estilo Lucide (24x24, stroke 2). -->
 <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
   <symbol id="i-github" viewBox="0 0 24 24">
-    <path fill="currentColor" d="M12 .3a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.23c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .3Z"/>
+    <path fill="currentColor" stroke="none" d="M12 .3a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.23c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .3Z"/>
   </symbol>
   <symbol id="i-linkedin" viewBox="0 0 24 24">
-    <path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/>
+    <path fill="currentColor" stroke="none" d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/>
   </symbol>
+  <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></symbol>
+  <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol>
+  <symbol id="i-bot" viewBox="0 0 24 24"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></symbol>
+  <symbol id="i-brain-circuit" viewBox="0 0 24 24"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M9 13a4.5 4.5 0 0 0 3-4"/><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"/><path d="M3.477 10.896a4 4 0 0 1 .585-.396"/><path d="M6 18a4 4 0 0 1-1.967-.516"/><path d="M12 13h4"/><path d="M12 18h6a2 2 0 0 1 2 2v1"/><path d="M12 8h8"/><path d="M16 8V5a2 2 0 0 1 2-2"/><circle cx="16" cy="13" r="1"/><circle cx="18" cy="3" r="1"/><circle cx="20" cy="21" r="1"/><circle cx="20" cy="8" r="1"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></symbol>
+  <symbol id="i-bus" viewBox="0 0 24 24"><path d="M8 6v6"/><path d="M15 6v6"/><path d="M2 12h19.6"/><path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3"/><circle cx="7" cy="18" r="2"/><path d="M9 18h5"/><circle cx="16" cy="18" r="2"/></symbol>
+  <symbol id="i-circuit-board" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M11 9h4a2 2 0 0 0 2-2V3"/><circle cx="9" cy="9" r="2"/><path d="M7 21v-4a2 2 0 0 1 2-2h4"/><circle cx="15" cy="15" r="2"/></symbol>
+  <symbol id="i-code-xml" viewBox="0 0 24 24"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></symbol>
+  <symbol id="i-corner-down-right" viewBox="0 0 24 24"><path d="m15 10 5 5-5 5"/><path d="M4 4v7a4 4 0 0 0 4 4h12"/></symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></symbol>
+  <symbol id="i-file-input" viewBox="0 0 24 24"><path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M2 15h10"/><path d="m9 18 3-3-3-3"/></symbol>
+  <symbol id="i-filter" viewBox="0 0 24 24"><path d="M10 20a1 1 0 0 0 1.55.83l2-1.3A1 1 0 0 0 14 18.7V14a2 2 0 0 1 .52-1.34l6.22-6.89A1 1 0 0 0 20 4H4a1 1 0 0 0-.74 1.67l6.22 6.89A2 2 0 0 1 10 14z"/></symbol>
+  <symbol id="i-folder-open" viewBox="0 0 24 24"><path d="m6 14 1.45-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.55 6a2 2 0 0 1-1.94 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></symbol>
+  <symbol id="i-gamepad-2" viewBox="0 0 24 24"><path d="M6 11h4"/><path d="M8 9v4"/><path d="M15 12h.01"/><path d="M18 10h.01"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/></symbol>
+  <symbol id="i-graduation-cap" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+  <symbol id="i-image-plus" viewBox="0 0 24 24"><path d="M16 5h6"/><path d="M19 2v6"/><path d="M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/><circle cx="9" cy="9" r="2"/></symbol>
+  <symbol id="i-languages" viewBox="0 0 24 24"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></symbol>
+  <symbol id="i-layout-grid" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+  <symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></symbol>
+  <symbol id="i-plane" viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 5.3 3.5c.4.3.8.2 1.1-.2l.4-.5c.3-.4.3-.9 0-1.2z"/></symbol>
+  <symbol id="i-printer" viewBox="0 0 24 24"><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6"/><rect width="12" height="8" x="6" y="14" rx="1"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></symbol>
+  <symbol id="i-shopping-bag" viewBox="0 0 24 24"><path d="M16 10a4 4 0 0 1-8 0"/><path d="M3.103 6.034h17.794"/><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"/></symbol>
+  <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-workflow" viewBox="0 0 24 24"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></symbol>
 </svg>
 <a class="skip-link" href="#main">Saltar al contenido principal</a>
 
@@ -931,19 +989,19 @@ kbd{
     <div class="nav__actions">
       <button class="kbd-hint no-print" id="cmdkOpen" type="button" aria-haspopup="dialog"
               aria-label="Abrir la paleta de comandos">
-        <i data-lucide="search" aria-hidden="true"></i>
+        <svg class="ico" aria-hidden="true"><use href="#i-search"></use></svg>
         <span class="cmdk-hint-txt">Buscar</span>
         <kbd id="cmdkKey">Ctrl K</kbd>
       </button>
       <button class="icon-btn theme-toggle" id="themeToggle" type="button"
               aria-label="Cambiar tema claro u oscuro" title="Cambiar tema">
-        <i data-lucide="moon" class="moon" aria-hidden="true"></i>
-        <i data-lucide="sun" class="sun" aria-hidden="true"></i>
+        <svg class="ico" aria-hidden="true"><use href="#i-moon"></use></svg>
+        <svg class="ico" aria-hidden="true"><use href="#i-sun"></use></svg>
       </button>
       <button class="icon-btn nav__toggle" id="navToggle" type="button"
               aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">
-        <i data-lucide="menu" class="ico-menu" aria-hidden="true"></i>
-        <i data-lucide="x" class="ico-close" aria-hidden="true"></i>
+        <svg class="ico" aria-hidden="true"><use href="#i-menu"></use></svg>
+        <svg class="ico" aria-hidden="true"><use href="#i-x"></use></svg>
       </button>
     </div>
   </div>
@@ -973,7 +1031,7 @@ kbd{
       </h1>
 
       <p class="hero__role reveal" data-d="2">
-        <span><i data-lucide="cpu" aria-hidden="true"></i> Líder de Taller Tecnológico</span>
+        <span><svg class="ico" aria-hidden="true"><use href="#i-cpu"></use></svg> Líder de Taller Tecnológico</span>
         <span class="sep" aria-hidden="true"></span>
         <span>Professional Tech Developer</span>
         <span class="sep" aria-hidden="true"></span>
@@ -988,18 +1046,18 @@ kbd{
       </p>
 
       <ul class="badges reveal" data-d="3" aria-label="Áreas de especialidad">
-        <li class="badge badge--maker"><i data-lucide="bot" aria-hidden="true"></i> Robótica Arduino / C++</li>
-        <li class="badge"><i data-lucide="code-xml" aria-hidden="true"></i> Programación Web</li>
-        <li class="badge badge--circuit"><i data-lucide="box" aria-hidden="true"></i> Impresión 3D</li>
-        <li class="badge badge--spark"><i data-lucide="sparkles" aria-hidden="true"></i> IA Aplicada</li>
+        <li class="badge badge--maker"><svg class="ico" aria-hidden="true"><use href="#i-bot"></use></svg> Robótica Arduino / C++</li>
+        <li class="badge"><svg class="ico" aria-hidden="true"><use href="#i-code-xml"></use></svg> Programación Web</li>
+        <li class="badge badge--circuit"><svg class="ico" aria-hidden="true"><use href="#i-box"></use></svg> Impresión 3D</li>
+        <li class="badge badge--spark"><svg class="ico" aria-hidden="true"><use href="#i-sparkles"></use></svg> IA Aplicada</li>
       </ul>
 
       <div class="hero__cta reveal" data-d="4">
         <a class="btn btn--primary" href="#proyectos">
-          <i data-lucide="layout-grid" aria-hidden="true"></i> Ver Proyectos
+          <svg class="ico" aria-hidden="true"><use href="#i-layout-grid"></use></svg> Ver Proyectos
         </a>
         <a class="btn btn--ghost" href="#contacto">
-          <i data-lucide="send" aria-hidden="true"></i> Contactar
+          <svg class="ico" aria-hidden="true"><use href="#i-send"></use></svg> Contactar
         </a>
         <a class="btn btn--ghost btn--icon" href="https://github.com/agusmiertorre"
            target="_blank" rel="noopener noreferrer" aria-label="Perfil de GitHub" title="GitHub">
@@ -1015,7 +1073,7 @@ kbd{
     <div class="hero__visual reveal" data-d="3">
       <article class="badge-card">
         <div class="badge-card__head">
-          <span class="badge-card__chip"><i data-lucide="user" aria-hidden="true"></i> Agustín Mier Torre</span>
+          <span class="badge-card__chip"><svg class="ico" aria-hidden="true"><use href="#i-user"></use></svg> Agustín Mier Torre</span>
           <span class="badge-card__id mono">Olivos · AR</span>
         </div>
 
@@ -1030,6 +1088,7 @@ kbd{
             <div><dt>Experiencia</dt><dd><b>4+ años</b> en educación tecnológica</dd></div>
             <div><dt>Formación</dt><dd>Professional Tech Developer</dd></div>
             <div><dt>Método</dt><dd>Aprendizaje basado en proyectos</dd></div>
+            <div><dt>Fabricación</dt><dd>Modelado en <b>Tinkercad</b> + impresión 3D FDM</dd></div>
             <div><dt>Idiomas</dt><dd>Español nativo · Inglés B1</dd></div>
           </dl>
         </div>
@@ -1066,24 +1125,24 @@ kbd{
 <div class="marquee no-print" aria-hidden="true">
   <div class="marquee__track">
     <div class="marquee__group">
-      <span><i data-lucide="cpu"></i> Arduino</span>
-      <span><i data-lucide="box"></i> Impresión 3D FDM</span>
-      <span><i data-lucide="circuit-board"></i> Electrónica</span>
-      <span><i data-lucide="code-xml"></i> JavaScript</span>
-      <span><i data-lucide="brain-circuit"></i> IA Aplicada</span>
-      <span><i data-lucide="zap"></i> Makey Makey</span>
-      <span><i data-lucide="workflow"></i> Automatización</span>
-      <span><i data-lucide="users"></i> Facilitación STEAM</span>
+      <span><svg class="ico" aria-hidden="true"><use href="#i-cpu"></use></svg> Arduino</span>
+      <span><svg class="ico" aria-hidden="true"><use href="#i-box"></use></svg> Impresión 3D FDM</span>
+      <span><svg class="ico" aria-hidden="true"><use href="#i-circuit-board"></use></svg> Electrónica</span>
+      <span><svg class="ico" aria-hidden="true"><use href="#i-code-xml"></use></svg> JavaScript</span>
+      <span><svg class="ico" aria-hidden="true"><use href="#i-brain-circuit"></use></svg> IA Aplicada</span>
+      <span><svg class="ico" aria-hidden="true"><use href="#i-zap"></use></svg> Makey Makey</span>
+      <span><svg class="ico" aria-hidden="true"><use href="#i-workflow"></use></svg> Automatización</span>
+      <span><svg class="ico" aria-hidden="true"><use href="#i-users"></use></svg> Facilitación STEAM</span>
     </div>
     <div class="marquee__group">
-      <span><i data-lucide="cpu"></i> Arduino</span>
-      <span><i data-lucide="box"></i> Impresión 3D FDM</span>
-      <span><i data-lucide="circuit-board"></i> Electrónica</span>
-      <span><i data-lucide="code-xml"></i> JavaScript</span>
-      <span><i data-lucide="brain-circuit"></i> IA Aplicada</span>
-      <span><i data-lucide="zap"></i> Makey Makey</span>
-      <span><i data-lucide="workflow"></i> Automatización</span>
-      <span><i data-lucide="users"></i> Facilitación STEAM</span>
+      <span><svg class="ico" aria-hidden="true"><use href="#i-cpu"></use></svg> Arduino</span>
+      <span><svg class="ico" aria-hidden="true"><use href="#i-box"></use></svg> Impresión 3D FDM</span>
+      <span><svg class="ico" aria-hidden="true"><use href="#i-circuit-board"></use></svg> Electrónica</span>
+      <span><svg class="ico" aria-hidden="true"><use href="#i-code-xml"></use></svg> JavaScript</span>
+      <span><svg class="ico" aria-hidden="true"><use href="#i-brain-circuit"></use></svg> IA Aplicada</span>
+      <span><svg class="ico" aria-hidden="true"><use href="#i-zap"></use></svg> Makey Makey</span>
+      <span><svg class="ico" aria-hidden="true"><use href="#i-workflow"></use></svg> Automatización</span>
+      <span><svg class="ico" aria-hidden="true"><use href="#i-users"></use></svg> Facilitación STEAM</span>
     </div>
   </div>
 </div>
@@ -1119,22 +1178,22 @@ kbd{
     </div>
 
     <aside class="about__panel reveal" data-d="2" aria-label="Datos de contacto y perfil">
-      <h3><i data-lucide="user" aria-hidden="true"></i> Ficha rápida</h3>
+      <h3><svg class="ico" aria-hidden="true"><use href="#i-user"></use></svg> Ficha rápida</h3>
       <dl class="factlist">
         <div class="fact">
-          <span class="fact__ico" aria-hidden="true"><i data-lucide="map-pin"></i></span>
+          <span class="fact__ico" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-map-pin"></use></svg></span>
           <div><dt>Ubicación</dt><dd>Olivos, Buenos Aires, Argentina</dd></div>
         </div>
         <div class="fact">
-          <span class="fact__ico" aria-hidden="true"><i data-lucide="graduation-cap"></i></span>
+          <span class="fact__ico" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-graduation-cap"></use></svg></span>
           <div><dt>Formación</dt><dd>Tec. Univ. en Gestión y Análisis de Datos — FCE, UBA</dd></div>
         </div>
         <div class="fact">
-          <span class="fact__ico" aria-hidden="true"><i data-lucide="mail"></i></span>
+          <span class="fact__ico" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-mail"></use></svg></span>
           <div><dt>Email</dt><dd><a href="mailto:agustinmiertorre@gmail.com">agustinmiertorre@gmail.com</a></dd></div>
         </div>
         <div class="fact">
-          <span class="fact__ico" aria-hidden="true"><i data-lucide="phone"></i></span>
+          <span class="fact__ico" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg></span>
           <div><dt>Teléfono</dt><dd><a href="tel:+5491141611054">+54 9 11 4161-1054</a></dd></div>
         </div>
         <div class="fact">
@@ -1146,11 +1205,11 @@ kbd{
           <div><dt>GitHub</dt><dd><a href="https://github.com/agusmiertorre" target="_blank" rel="noopener noreferrer">@agusmiertorre</a></dd></div>
         </div>
         <div class="fact">
-          <span class="fact__ico" aria-hidden="true"><i data-lucide="languages"></i></span>
+          <span class="fact__ico" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-languages"></use></svg></span>
           <div><dt>Idiomas</dt><dd>Español (nativo) · Inglés B1 (MCER)</dd></div>
         </div>
         <div class="fact">
-          <span class="fact__ico" aria-hidden="true"><i data-lucide="plane"></i></span>
+          <span class="fact__ico" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-plane"></use></svg></span>
           <div><dt>Movilidad</dt><dd>Pasaporte europeo · Licencia de conducir B1</dd></div>
         </div>
       </dl>
@@ -1171,7 +1230,7 @@ kbd{
 
     <div class="grid-track">
       <div class="track reveal" style="--accent:var(--maker)">
-        <h3><i data-lucide="briefcase" aria-hidden="true"></i> Experiencia laboral</h3>
+        <h3><svg class="ico" aria-hidden="true"><use href="#i-briefcase"></use></svg> Experiencia laboral</h3>
         <ol class="timeline">
           <li class="tl-item tl-item--now">
             <p class="tl-when">2021 — Actualidad <span class="tl-now">Actual</span></p>
@@ -1207,7 +1266,7 @@ kbd{
       </div>
 
       <div class="track reveal" data-d="2" style="--accent:var(--brand-soft)">
-        <h3><i data-lucide="graduation-cap" aria-hidden="true"></i> Formación académica</h3>
+        <h3><svg class="ico" aria-hidden="true"><use href="#i-graduation-cap"></use></svg> Formación académica</h3>
         <ol class="timeline">
           <li class="tl-item tl-item--now">
             <p class="tl-when">2025 — Actualidad <span class="tl-now">En curso</span></p>
@@ -1249,16 +1308,16 @@ kbd{
 
     <div class="filters reveal" role="tablist" aria-label="Filtrar proyectos por categoría">
       <button class="filter" id="tab-todos" role="tab" aria-selected="true" aria-controls="panel-proyectos" data-filter="todos" type="button">
-        <i data-lucide="layout-grid" aria-hidden="true"></i> Todos
+        <svg class="ico" aria-hidden="true"><use href="#i-layout-grid"></use></svg> Todos
       </button>
       <button class="filter" id="tab-robotica" role="tab" aria-selected="false" aria-controls="panel-proyectos" data-filter="robotica" type="button" tabindex="-1">
-        <i data-lucide="bot" aria-hidden="true"></i> Robótica &amp; Maker
+        <svg class="ico" aria-hidden="true"><use href="#i-bot"></use></svg> Robótica &amp; Maker
       </button>
       <button class="filter" id="tab-web" role="tab" aria-selected="false" aria-controls="panel-proyectos" data-filter="web" type="button" tabindex="-1">
-        <i data-lucide="code-xml" aria-hidden="true"></i> Desarrollo Web
+        <svg class="ico" aria-hidden="true"><use href="#i-code-xml"></use></svg> Desarrollo Web
       </button>
       <button class="filter" id="tab-ia" role="tab" aria-selected="false" aria-controls="panel-proyectos" data-filter="ia" type="button" tabindex="-1">
-        <i data-lucide="sparkles" aria-hidden="true"></i> Automatización &amp; IA
+        <svg class="ico" aria-hidden="true"><use href="#i-sparkles"></use></svg> Automatización &amp; IA
       </button>
     </div>
 
@@ -1267,7 +1326,7 @@ kbd{
       <!-- ── A. ROBÓTICA & CULTURA MAKER ── -->
       <article class="pcard reveal" data-cat="robotica" style="--accent:var(--maker)">
         <div class="pcard__top">
-          <span class="pcard__ico" aria-hidden="true"><i data-lucide="zap"></i></span>
+          <span class="pcard__ico" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-zap"></use></svg></span>
           <span class="pcard__cat">Robótica &amp; Maker</span>
         </div>
         <h3>Taller Maker en Usina del Arte (GCBA)</h3>
@@ -1282,13 +1341,13 @@ kbd{
         </ul>
         <a class="pcard__link" href="https://buenosaires.gob.ar/gcaba_historico/noticias/la-usina-celebra-el-dia-de-los-abuelos-y-las-abuelas-con-una-programacion"
            target="_blank" rel="noopener noreferrer">
-          Ver nota del GCBA <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+          Ver nota del GCBA <svg class="ico" aria-hidden="true"><use href="#i-arrow-up-right"></use></svg>
         </a>
       </article>
 
       <article class="pcard reveal" data-d="1" data-cat="robotica" style="--accent:var(--maker)">
         <div class="pcard__top">
-          <span class="pcard__ico" aria-hidden="true"><i data-lucide="circuit-board"></i></span>
+          <span class="pcard__ico" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-circuit-board"></use></svg></span>
           <span class="pcard__cat">Robótica &amp; Maker</span>
         </div>
         <h3>Laboratorio de Robótica y Domótica con Arduino</h3>
@@ -1305,7 +1364,7 @@ kbd{
 
       <article class="pcard reveal" data-d="2" data-cat="robotica" style="--accent:var(--maker)">
         <div class="pcard__top">
-          <span class="pcard__ico" aria-hidden="true"><i data-lucide="box"></i></span>
+          <span class="pcard__ico" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-box"></use></svg></span>
           <span class="pcard__cat">Robótica &amp; Maker</span>
         </div>
         <h3>Fabricación Digital &amp; Prototipado 3D</h3>
@@ -1320,10 +1379,28 @@ kbd{
         </ul>
       </article>
 
+      <article class="pcard reveal" data-d="3" data-cat="robotica" style="--accent:var(--maker)">
+        <div class="pcard__top">
+          <span class="pcard__ico" aria-hidden="true"><svg class="ico"><use href="#i-bus"></use></svg></span>
+          <span class="pcard__cat">Robótica &amp; Maker</span>
+        </div>
+        <h3>Visitas Educativas a Centros de Tecnología</h3>
+        <p class="pcard__desc">
+          Organización y coordinación de salidas con los grupos a laboratorios, museos
+          interactivos y polos tecnológicos. Los estudiantes ven la tecnología funcionando
+          fuera del aula, entrevistan a quienes la desarrollan y vuelven con una consigna
+          concreta para el siguiente proyecto del taller.
+        </p>
+        <ul class="tags" aria-label="Tecnologías">
+          <li class="tag">Salidas educativas</li><li class="tag">STEAM</li>
+          <li class="tag">Coordinación de grupos</li><li class="tag">Vinculación</li>
+        </ul>
+      </article>
+
       <!-- ── B. DESARROLLO DE SOFTWARE & WEB ── -->
       <article class="pcard reveal" data-cat="web" style="--accent:var(--brand-soft)">
         <div class="pcard__top">
-          <span class="pcard__ico" aria-hidden="true"><i data-lucide="gamepad-2"></i></span>
+          <span class="pcard__ico" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-gamepad-2"></use></svg></span>
           <span class="pcard__cat">Desarrollo Web</span>
         </div>
         <h3>Álbum Digital Interactivo</h3>
@@ -1338,13 +1415,13 @@ kbd{
         </ul>
         <a class="pcard__link" href="https://www.instagram.com/p/DaTxFzTmhZc/?img_index=4&amp;stkn=OGMydGZnMDhvajhu"
            target="_blank" rel="noopener noreferrer">
-          Ver el proyecto <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+          Ver el proyecto <svg class="ico" aria-hidden="true"><use href="#i-arrow-up-right"></use></svg>
         </a>
       </article>
 
       <article class="pcard reveal" data-d="1" data-cat="web" style="--accent:var(--brand-soft)">
         <div class="pcard__top">
-          <span class="pcard__ico" aria-hidden="true"><i data-lucide="shopping-bag"></i></span>
+          <span class="pcard__ico" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-shopping-bag"></use></svg></span>
           <span class="pcard__cat">Desarrollo Web</span>
         </div>
         <h3>Tesoro Estudio (E-commerce &amp; Web)</h3>
@@ -1357,13 +1434,13 @@ kbd{
           <li class="tag">DNS</li><li class="tag">Pagos</li>
         </ul>
         <a class="pcard__link" href="https://tesoroestudio.com.ar" target="_blank" rel="noopener noreferrer">
-          tesoroestudio.com.ar <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+          tesoroestudio.com.ar <svg class="ico" aria-hidden="true"><use href="#i-arrow-up-right"></use></svg>
         </a>
       </article>
 
       <article class="pcard reveal" data-d="2" data-cat="web" style="--accent:var(--brand-soft)">
         <div class="pcard__top">
-          <span class="pcard__ico" aria-hidden="true"><i data-lucide="file-input"></i></span>
+          <span class="pcard__ico" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-file-input"></use></svg></span>
           <span class="pcard__cat">Desarrollo Web</span>
         </div>
         <h3>Sistemas Web para Instituciones Educativas</h3>
@@ -1380,7 +1457,7 @@ kbd{
       <!-- ── C. AUTOMATIZACIÓN, IA & MODERNIZACIÓN ── -->
       <article class="pcard reveal" data-cat="ia" style="--accent:var(--circuit)">
         <div class="pcard__top">
-          <span class="pcard__ico" aria-hidden="true"><i data-lucide="workflow"></i></span>
+          <span class="pcard__ico" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-workflow"></use></svg></span>
           <span class="pcard__cat">Automatización &amp; IA</span>
         </div>
         <h3>Ecosistema de Automatización con Google Apps Script</h3>
@@ -1397,7 +1474,7 @@ kbd{
 
       <article class="pcard reveal" data-d="1" data-cat="ia" style="--accent:var(--circuit)">
         <div class="pcard__top">
-          <span class="pcard__ico" aria-hidden="true"><i data-lucide="brain-circuit"></i></span>
+          <span class="pcard__ico" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-brain-circuit"></use></svg></span>
           <span class="pcard__cat">Automatización &amp; IA</span>
         </div>
         <h3>Capacitación Docente en IA y Herramientas Digitales</h3>
@@ -1428,62 +1505,152 @@ kbd{
       <p class="eyebrow">En el taller</p>
       <h2 class="sec-title" id="taller-title">Galería del laboratorio</h2>
       <p class="sec-sub">
-        Momentos reales de los talleres: manos en la protoboard, código en pantalla y
-        prototipos que terminan funcionando.
+        Cómo se ve el trabajo en el taller: manos en la protoboard, modelado 3D, circuitos
+        que se tocan y salidas a ver tecnología funcionando.
       </p>
     </div>
 
     <div class="grid-gallery">
 
       <!--
-        ▸ CÓMO INCRUSTAR LA FOTO REAL:
-          Reemplazá el bloque <div class="shot__ph"> … </div> por:
-          <img src="img/taller-arduino.jpg" alt="Estudiantes programando una placa Arduino en el taller" loading="lazy" width="1200" height="900">
+        ▸ PARA PONER LA FOTO REAL: reemplazá todo el <svg class="shot__art"> … </svg>
+          por la imagen, y borrá el <span class="shot__tag">. El CSS ya aplica object-fit
+          y el zoom en hover:
+          <img src="img/usina-makey.jpg" alt="…" loading="lazy" width="1200" height="900">
       -->
-      <figure class="shot reveal">
+      <figure class="shot reveal" style="--accent:var(--maker)">
         <div class="shot__media">
-          <div class="shot__ph">
-            <span class="ph-ico" aria-hidden="true"><i data-lucide="image-plus"></i></span>
-            <span>Foto 01 · Arduino</span>
-          </div>
-        </div>
-        <figcaption class="shot__body">
-          <h3>Programando y prototipando</h3>
-          <p>Alumnos trabajando con placas Arduino y notebooks: del diagrama de conexión al
-             código que enciende el primer sensor.</p>
-          <span class="shot__meta"><i data-lucide="cpu" aria-hidden="true"></i> Laboratorio de robótica</span>
-        </figcaption>
-      </figure>
-
-      <!-- ▸ Reemplazar .shot__ph por: <img src="img/usina-makey-makey.jpg" alt="Conexión de una placa Makey Makey con masa conductora"> -->
-      <figure class="shot reveal" data-d="1">
-        <div class="shot__media">
-          <div class="shot__ph">
-            <span class="ph-ico" aria-hidden="true"><i data-lucide="image-plus"></i></span>
-            <span>Foto 02 · Makey Makey</span>
-          </div>
+          <span class="shot__tag">Ilustración</span>
+          <svg class="shot__art" viewBox="0 0 400 300" role="img"
+               aria-label="Ilustración de una placa Makey Makey conectada con pinzas cocodrilo a piezas de masa conductora.">
+            <path class="st" d="M40 232h320"/>
+            <rect class="fl" x="138" y="120" width="124" height="74" rx="8"/>
+            <rect class="ac" x="138" y="120" width="124" height="74" rx="8"/>
+            <circle class="dot" cx="162" cy="144" r="5"/><circle class="dot" cx="200" cy="144" r="5"/>
+            <circle class="dot" cx="238" cy="144" r="5"/><circle class="dot" cx="162" cy="170" r="5"/>
+            <circle class="dot" cx="200" cy="170" r="5"/><circle class="dot" cx="238" cy="170" r="5"/>
+            <path class="ac" d="M138 150c-34 0-46 30-46 52"/>
+            <path class="ac" d="M262 150c34 0 46 30 46 52"/>
+            <path class="ac" d="M200 194c0 18-6 26-6 38"/>
+            <path class="fl" d="M68 226c0-16 11-24 24-24s24 8 24 24z"/>
+            <path class="st" d="M68 226c0-16 11-24 24-24s24 8 24 24"/>
+            <path class="fl" d="M170 232c0-14 10-22 24-22s24 8 24 22z"/>
+            <path class="st" d="M170 232c0-14 10-22 24-22s24 8 24 22"/>
+            <path class="fl" d="M284 226c0-16 11-24 24-24s24 8 24 24z"/>
+            <path class="st" d="M284 226c0-16 11-24 24-24s24 8 24 24"/>
+            <path class="ac" d="M200 120V92"/>
+            <path class="st" d="M186 78c0-8 6-14 14-14s14 6 14 14-6 14-14 14-14-6-14-14Z"/>
+            <path class="ac" d="M174 66c-6 6-9 14-9 22M226 66c6 6 9 14 9 22"/>
+            <circle class="glow" cx="200" cy="78" r="4"/>
+          </svg>
         </div>
         <figcaption class="shot__body">
           <h3>Circuitos con masa conductora</h3>
-          <p>Conexiones de placas Makey Makey y Squishy Circuits en el taller familiar de la
-             Usina del Arte: electrónica que se toca y suena.</p>
-          <span class="shot__meta"><i data-lucide="zap" aria-hidden="true"></i> Usina del Arte · GCBA</span>
+          <p>Makey Makey y Squishy Circuits en el taller familiar de la Usina del Arte:
+             electrónica que se toca, se amasa y suena.</p>
+          <span class="shot__meta"><svg class="ico" aria-hidden="true"><use href="#i-zap"></use></svg> Usina del Arte · GCBA</span>
         </figcaption>
       </figure>
 
-      <!-- ▸ Reemplazar .shot__ph por: <img src="img/protoboard-oled.jpg" alt="Protoboard con relés y pantalla OLED conectada"> -->
-      <figure class="shot reveal" data-d="2">
+      <figure class="shot reveal" data-d="1" style="--accent:var(--brand-soft)">
         <div class="shot__media">
-          <div class="shot__ph">
-            <span class="ph-ico" aria-hidden="true"><i data-lucide="image-plus"></i></span>
-            <span>Foto 03 · Protoboard</span>
-          </div>
+          <span class="shot__tag">Ilustración</span>
+          <svg class="shot__art" viewBox="0 0 400 300" role="img"
+               aria-label="Ilustración de una placa Arduino cableada a una protoboard, con pantalla OLED y un LED encendido.">
+            <rect class="fl" x="36" y="150" width="150" height="104" rx="8"/>
+            <rect class="st" x="36" y="150" width="150" height="104" rx="8"/>
+            <g class="dot">
+              <circle cx="58" cy="172" r="3"/><circle cx="80" cy="172" r="3"/><circle cx="102" cy="172" r="3"/>
+              <circle cx="124" cy="172" r="3"/><circle cx="146" cy="172" r="3"/><circle cx="168" cy="172" r="3"/>
+              <circle cx="58" cy="194" r="3"/><circle cx="80" cy="194" r="3"/><circle cx="102" cy="194" r="3"/>
+              <circle cx="124" cy="194" r="3"/><circle cx="146" cy="194" r="3"/><circle cx="168" cy="194" r="3"/>
+              <circle cx="58" cy="232" r="3"/><circle cx="80" cy="232" r="3"/><circle cx="102" cy="232" r="3"/>
+              <circle cx="124" cy="232" r="3"/><circle cx="146" cy="232" r="3"/><circle cx="168" cy="232" r="3"/>
+            </g>
+            <path class="st" d="M36 212h150"/>
+            <rect class="fl" x="228" y="166" width="126" height="76" rx="8"/>
+            <rect class="ac" x="228" y="166" width="126" height="76" rx="8"/>
+            <rect class="st" x="252" y="188" width="42" height="32" rx="3"/>
+            <path class="st" d="M312 188h26M312 198h26M312 208h18"/>
+            <path class="ac" d="M186 186c28 0 24-20 42-20"/>
+            <path class="ac" d="M186 204c28 0 24 18 42 18"/>
+            <rect class="fl" x="150" y="62" width="120" height="62" rx="8"/>
+            <rect class="st" x="150" y="62" width="120" height="62" rx="8"/>
+            <path class="ac" d="M166 104c8 0 8-22 16-22s8 22 16 22 8-30 16-30 8 30 16 30 8-14 16-14"/>
+            <path class="st" d="M210 124v26"/>
+            <circle class="glow" cx="96" cy="128" r="7"/>
+            <path class="ac" d="M96 106v10M78 118l7 6M114 118l-7 6"/>
+          </svg>
         </div>
         <figcaption class="shot__body">
-          <h3>Electrónica en protoboard</h3>
-          <p>Circuitos con relés, sensores y pantallas OLED I2C montados por los estudiantes
-             durante el trayecto de domótica.</p>
-          <span class="shot__meta"><i data-lucide="circuit-board" aria-hidden="true"></i> Domótica &amp; sensores</span>
+          <h3>Programando y prototipando</h3>
+          <p>Del diagrama de conexión al código que enciende el primer sensor: Arduino,
+             protoboard, pantallas OLED I2C y mucha iteración.</p>
+          <span class="shot__meta"><svg class="ico" aria-hidden="true"><use href="#i-cpu"></use></svg> Laboratorio de robótica</span>
+        </figcaption>
+      </figure>
+
+      <figure class="shot reveal" data-d="2" style="--accent:var(--circuit)">
+        <div class="shot__media">
+          <span class="shot__tag">Ilustración</span>
+          <svg class="shot__art" viewBox="0 0 400 300" role="img"
+               aria-label="Ilustración de un modelo 3D en wireframe junto a una impresora FDM depositando capas sobre la cama.">
+            <path class="ac" d="M118 74 60 104v62l58 30 58-30v-62z"/>
+            <path class="st" d="m60 104 58 30 58-30M118 134v62"/>
+            <circle class="glow" cx="60" cy="104" r="4"/><circle class="glow" cx="176" cy="104" r="4"/>
+            <circle class="glow" cx="118" cy="74" r="4"/><circle class="glow" cx="118" cy="196" r="4"/>
+            <path class="st" d="M232 78h132M298 78v34"/>
+            <rect class="fl" x="274" y="112" width="48" height="30" rx="5"/>
+            <rect class="ac" x="274" y="112" width="48" height="30" rx="5"/>
+            <path class="ac" d="M298 142v18"/>
+            <path class="st" d="M240 232h116"/>
+            <rect class="fl" x="262" y="196" width="72" height="12" rx="2"/>
+            <rect class="fl" x="266" y="184" width="64" height="12" rx="2"/>
+            <rect class="fl" x="272" y="172" width="52" height="12" rx="2"/>
+            <rect class="ac" x="262" y="196" width="72" height="12" rx="2"/>
+            <rect class="ac" x="266" y="184" width="64" height="12" rx="2"/>
+            <rect class="ac" x="272" y="172" width="52" height="12" rx="2"/>
+            <path class="st" d="M240 208h116v24H240z"/>
+            <path class="ac" d="M118 232h44" stroke-dasharray="6 8"/>
+            <path class="ac" d="m156 226 8 6-8 6"/>
+          </svg>
+        </div>
+        <figcaption class="shot__body">
+          <h3>Del modelo 3D a la pieza real</h3>
+          <p>Los alumnos modelan en <strong>Tinkercad</strong>, lo pasan por el slicer y lo
+             imprimen en FDM: carcasas, engranajes y piezas que encajan de verdad.</p>
+          <span class="shot__meta"><svg class="ico" aria-hidden="true"><use href="#i-box"></use></svg> Tinkercad · Impresión 3D</span>
+        </figcaption>
+      </figure>
+
+      <figure class="shot reveal" data-d="3" style="--accent:var(--spark)">
+        <div class="shot__media">
+          <span class="shot__tag">Ilustración</span>
+          <svg class="shot__art" viewBox="0 0 400 300" role="img"
+               aria-label="Ilustración de un grupo de estudiantes frente a un centro de tecnología durante una visita educativa.">
+            <path class="st" d="M30 244h340"/>
+            <path class="fl" d="M96 244V108l84-38 84 38v136z"/>
+            <path class="ac" d="M96 244V108l84-38 84 38v136"/>
+            <path class="st" d="M128 140h34v30h-34zM198 140h34v30h-34zM128 186h34v30h-34zM198 186h34v30h-34z"/>
+            <path class="ac" d="M156 244v-28h48v28"/>
+            <path class="st" d="M296 244v-84h52v84"/>
+            <path class="st" d="M310 178h10M324 178h10M310 198h10M324 198h10"/>
+            <circle class="glow" cx="180" cy="92" r="5"/>
+            <g class="st">
+              <circle cx="58" cy="196" r="10"/><path d="M46 244v-22a12 12 0 0 1 24 0v22"/>
+              <circle cx="88" cy="204" r="9"/><path d="M77 244v-20a11 11 0 0 1 22 0v20"/>
+            </g>
+            <g class="ac">
+              <circle cx="330" cy="120" r="14"/><path d="M330 106v-12M330 146v-12M316 120h-12M356 120h-12"/>
+            </g>
+            <path class="ac" d="M70 226c40-16 74-16 110 0" stroke-dasharray="5 9"/>
+          </svg>
+        </div>
+        <figcaption class="shot__body">
+          <h3>Visitas a centros de tecnología</h3>
+          <p>Salidas con los grupos a laboratorios, museos y polos tecnológicos: ver la
+             tecnología funcionando fuera del aula y volver con ideas para el próximo proyecto.</p>
+          <span class="shot__meta"><svg class="ico" aria-hidden="true"><use href="#i-bus"></use></svg> Salidas educativas</span>
         </figcaption>
       </figure>
 
@@ -1506,7 +1673,7 @@ kbd{
     <div class="grid-skills">
       <article class="skillcard reveal" style="--accent:var(--maker)">
         <div class="skillcard__head">
-          <span class="skillcard__ico" aria-hidden="true"><i data-lucide="cpu"></i></span>
+          <span class="skillcard__ico" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-cpu"></use></svg></span>
           <h3>Hardware &amp; Maker <small>Electrónica y fabricación</small></h3>
         </div>
         <ul class="chiplist" aria-label="Hardware y fabricación digital">
@@ -1515,14 +1682,14 @@ kbd{
           <li class="chip">Pantallas OLED I2C</li><li class="chip">Relés y motores</li>
           <li class="chip">Protoboard &amp; soldadura</li><li class="chip">Makey Makey</li>
           <li class="chip">Squishy Circuits</li><li class="chip">Impresión 3D FDM</li>
-          <li class="chip">Bambu Lab / Creality</li><li class="chip">Tinkercad</li>
+          <li class="chip">Bambu Lab / Creality</li><li class="chip">Modelado 3D en Tinkercad</li>
           <li class="chip">Slicing &amp; calibración</li>
         </ul>
       </article>
 
       <article class="skillcard reveal" data-d="1" style="--accent:var(--brand-soft)">
         <div class="skillcard__head">
-          <span class="skillcard__ico" aria-hidden="true"><i data-lucide="code-xml"></i></span>
+          <span class="skillcard__ico" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-code-xml"></use></svg></span>
           <h3>Programación <small>Software y web</small></h3>
         </div>
         <ul class="chiplist" aria-label="Lenguajes y tecnologías de programación">
@@ -1537,7 +1704,7 @@ kbd{
 
       <article class="skillcard reveal" data-d="2" style="--accent:var(--circuit)">
         <div class="skillcard__head">
-          <span class="skillcard__ico" aria-hidden="true"><i data-lucide="brain-circuit"></i></span>
+          <span class="skillcard__ico" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-brain-circuit"></use></svg></span>
           <h3>IA &amp; Datos <small>Automatización aplicada</small></h3>
         </div>
         <ul class="chiplist" aria-label="Inteligencia artificial, datos y automatización">
@@ -1551,7 +1718,7 @@ kbd{
 
       <article class="skillcard reveal" data-d="3" style="--accent:var(--spark)">
         <div class="skillcard__head">
-          <span class="skillcard__ico" aria-hidden="true"><i data-lucide="users"></i></span>
+          <span class="skillcard__ico" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-users"></use></svg></span>
           <h3>Pedagogía &amp; Facilitación <small>Metodología PBL</small></h3>
         </div>
         <ul class="chiplist" aria-label="Metodología pedagógica">
@@ -1579,7 +1746,7 @@ kbd{
       </p>
       <div class="contact__links">
         <a class="btn btn--primary" href="mailto:agustinmiertorre@gmail.com">
-          <i data-lucide="mail" aria-hidden="true"></i> agustinmiertorre@gmail.com
+          <svg class="ico" aria-hidden="true"><use href="#i-mail"></use></svg> agustinmiertorre@gmail.com
         </a>
         <a class="btn btn--ghost" href="https://linkedin.com/in/agustinmiertorre/" target="_blank" rel="noopener noreferrer">
           <svg class="brand-ico" aria-hidden="true"><use href="#i-linkedin"></use></svg> LinkedIn
@@ -1612,13 +1779,13 @@ kbd{
 
     <div class="footer__social">
       <a class="icon-btn" href="mailto:agustinmiertorre@gmail.com" aria-label="Enviar email" title="Email">
-        <i data-lucide="mail" aria-hidden="true"></i></a>
+        <svg class="ico" aria-hidden="true"><use href="#i-mail"></use></svg></a>
       <a class="icon-btn" href="https://linkedin.com/in/agustinmiertorre/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
         <svg class="brand-ico" aria-hidden="true"><use href="#i-linkedin"></use></svg></a>
       <a class="icon-btn" href="https://github.com/agusmiertorre" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
         <svg class="brand-ico" aria-hidden="true"><use href="#i-github"></use></svg></a>
       <button class="btn btn--ghost btn--sm no-print" id="printBtn" type="button">
-        <i data-lucide="printer" aria-hidden="true"></i> Imprimir / Guardar PDF
+        <svg class="ico" aria-hidden="true"><use href="#i-printer"></use></svg> Imprimir / Guardar PDF
       </button>
     </div>
   </div>
@@ -1632,7 +1799,7 @@ kbd{
     <h2 class="sr-only" id="cmdkLabel">Paleta de comandos</h2>
 
     <div class="cmdk__search">
-      <i data-lucide="search" aria-hidden="true"></i>
+      <svg class="ico" aria-hidden="true"><use href="#i-search"></use></svg>
       <label class="sr-only" for="cmdkInput">Buscar secciones, proyectos y acciones</label>
       <input id="cmdkInput" type="text" role="combobox" autocomplete="off" spellcheck="false"
              aria-expanded="true" aria-controls="cmdkList" aria-autocomplete="list"
@@ -1651,11 +1818,10 @@ kbd{
 </div>
 
 <button class="to-top no-print" id="toTop" type="button" aria-label="Volver arriba" title="Volver arriba">
-  <i data-lucide="arrow-up" aria-hidden="true"></i>
+  <svg class="ico" aria-hidden="true"><use href="#i-arrow-up"></use></svg>
 </button>
 
 <!-- ========================= SCRIPTS ========================= -->
-<script src="https://unpkg.com/lucide@latest"></script>
 <script>
 (function () {
   'use strict';
@@ -1663,21 +1829,6 @@ kbd{
   var $  = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* ---------- 1. Iconos Lucide ---------- */
-  function paintIcons() {
-    if (window.lucide && typeof window.lucide.createIcons === 'function') {
-      window.lucide.createIcons();
-    }
-  }
-  paintIcons();
-
-  /* Si Lucide no conoce un nombre deja el <i> vacío, que igual ocupa el `gap`
-     de su contenedor. Lo sacamos para que no queden huecos. */
-  function dropUnresolvedIcons() {
-    if (!window.lucide) return;
-    $$('[data-lucide]').forEach(function (el) { el.remove(); });
-  }
 
   /* ---------- 2. Tema claro / oscuro ---------- */
   var root = document.documentElement;
@@ -1942,9 +2093,9 @@ kbd{
           run: function () { window.location.href = 'mailto:agustinmiertorre@gmail.com'; } },
         { group: 'Acciones', icon: 'copy', label: 'Copiar el email', extra: 'portapapeles clipboard',
           run: function () { copyText('agustinmiertorre@gmail.com'); } },
-        { group: 'Acciones', icon: '#i-linkedin', label: 'Abrir LinkedIn',
+        { group: 'Acciones', icon: 'linkedin', brand: true, label: 'Abrir LinkedIn',
           run: function () { window.open('https://linkedin.com/in/agustinmiertorre/', '_blank', 'noopener'); } },
-        { group: 'Acciones', icon: '#i-github', label: 'Abrir GitHub',
+        { group: 'Acciones', icon: 'github', brand: true, label: 'Abrir GitHub',
           run: function () { window.open('https://github.com/agusmiertorre', '_blank', 'noopener'); } },
         { group: 'Acciones', icon: 'printer', label: 'Imprimir o guardar como PDF',
           extra: 'cv curriculum imprimir', run: function () { window.print(); } },
@@ -2026,9 +2177,8 @@ kbd{
         b.id = 'cmdk-i' + i;
         b.setAttribute('role', 'option');
         b.setAttribute('aria-selected', String(i === 0));
-        b.innerHTML = (it.icon.charAt(0) === '#'
-                        ? '<svg class="brand-ico" aria-hidden="true"><use href="' + it.icon + '"></use></svg>'
-                        : '<i data-lucide="' + it.icon + '" aria-hidden="true"></i>') +
+        b.innerHTML = '<svg class="' + (it.brand ? 'brand-ico' : 'ico') + '" aria-hidden="true">' +
+                        '<use href="#i-' + it.icon + '"></use></svg>' +
                       '<span class="lbl"></span>' +
                       (it.meta ? '<span class="meta"></span>' : '');
         b.querySelector('.lbl').textContent = it.label;
@@ -2037,8 +2187,6 @@ kbd{
         b.addEventListener('mousemove', function () { setActive(i); });
         cmdkList.appendChild(b);
       });
-      paintIcons();
-      dropUnresolvedIcons();
       setActive(0);
     }
 
@@ -2105,11 +2253,6 @@ kbd{
   var year = $('#year');
   if (year) year.textContent = String(new Date().getFullYear());
 
-  /* ---------- 12. Fallback de iconos si el CDN tarda ---------- */
-  window.addEventListener('load', function () {
-    paintIcons();
-    window.setTimeout(dropUnresolvedIcons, 400);
-  });
 })();
 </script>
 </body>

@@ -1,7 +1,10 @@
 # Portfolio — Agustín Mier Torre
 
 Web personal interactiva en **un único archivo autocontenido**: [`index.html`](index.html)
-(HTML semántico + CSS + Vanilla JS + [Lucide Icons](https://lucide.dev) vía CDN).
+(HTML semántico + CSS + Vanilla JS). Sin build, sin dependencias en runtime:
+los iconos y la foto viajan dentro del archivo.
+
+🔗 En vivo: <https://seagreen-alligator-493975.hostingersite.com/>
 
 ## Uso
 
@@ -16,7 +19,7 @@ Para publicarlo alcanza con subir el archivo a GitHub Pages, Vercel, Netlify o c
 | Perfil | Bio extendida + ficha rápida de contacto |
 | Proyectos | Grilla con filtro por categoría (tabs accesibles con teclado), sin conteos a la vista |
 | Trayectoria | Timeline de experiencia laboral y formación académica |
-| Galería | 3 tarjetas con *placeholders* listos para reemplazar por fotos reales |
+| Galería | 4 tarjetas con ilustraciones SVG propias, listas para reemplazar por fotos reales |
 | Stack | 4 grupos: Hardware/Maker, Programación, IA & Datos, Pedagogía PBL |
 | Footer | Contacto + botón "Imprimir / Guardar PDF" |
 
@@ -42,9 +45,11 @@ aparece en la paleta sin tocar el JavaScript. La búsqueda ignora acentos (`robo
   incluye la foto, la ficha de contacto y la trayectoria. Imprime todos los proyectos aunque
   haya un filtro activo y expande las URLs de los enlaces relevantes.
 - **Foto de perfil embebida** como `data:` URI, así el archivo sigue siendo autocontenido.
-- **Logos de GitHub y LinkedIn como SVG inline** (`<symbol>` + `<use>`): Lucide retiró los
-  íconos de marca de su set, así que no se pueden pedir por `data-lucide`. Si un nombre de
-  ícono no existe, el JS borra el `<i>` vacío para que no quede un hueco en el `gap`.
+- **Iconos 100 % inline**, en un sprite `<symbol>` + `<use>` al inicio del `<body>`.
+  Se probó primero con Lucide por CDN y no cargaba: `https://unpkg.com/lucide@latest`
+  sin ruta no sirve el build UMD de navegador, así que `window.lucide` quedaba `undefined`
+  y ningún `data-lucide` se resolvía. Además Lucide ya no incluye iconos de marca
+  (GitHub, LinkedIn). Con el sprite no hay pedido de red que pueda fallar.
 
 ## Datos personales
 
@@ -57,16 +62,10 @@ que se pueden borrar.
 
 ## Cómo agregar las fotos reales
 
-En la sección `#taller` cada tarjeta tiene un placeholder. Reemplazá el bloque:
-
-```html
-<div class="shot__ph">
-  <span class="ph-ico" aria-hidden="true"><i data-lucide="image-plus"></i></span>
-  <span>Foto 01 · Arduino</span>
-</div>
-```
-
-por la imagen (el CSS ya aplica `object-fit: cover` y el zoom en hover):
+Las cuatro tarjetas de `#taller` traen **ilustraciones SVG propias**, no fotos: están
+etiquetadas como "Ilustración" justamente para no hacer pasar un dibujo por documentación
+de un taller real. Cuando tengas las fotos, reemplazá el `<svg class="shot__art">…</svg>`
+entero y borrá el `<span class="shot__tag">Ilustración</span>`:
 
 ```html
 <img src="img/taller-arduino.jpg"
