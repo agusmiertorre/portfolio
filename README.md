@@ -12,9 +12,9 @@ Para publicarlo alcanza con subir el archivo a GitHub Pages, Vercel, Netlify o c
 
 | Sección | Detalle |
 |---|---|
-| Hero | Badges de especialidad, CTAs, **credencial de taller** (foto + datos reales) y contadores animados |
+| Hero | Badges de especialidad, CTAs, **tarjeta de perfil** (foto + datos reales) y contador animado |
 | Perfil | Bio extendida + ficha rápida de contacto |
-| Proyectos | 8 proyectos con filtro por categoría (tabs accesibles con teclado) |
+| Proyectos | Grilla con filtro por categoría (tabs accesibles con teclado), sin conteos a la vista |
 | Trayectoria | Timeline de experiencia laboral y formación académica |
 | Galería | 3 tarjetas con *placeholders* listos para reemplazar por fotos reales |
 | Stack | 4 grupos: Hardware/Maker, Programación, IA & Datos, Pedagogía PBL |
@@ -42,11 +42,16 @@ aparece en la paleta sin tocar el JavaScript. La búsqueda ignora acentos (`robo
   incluye la foto, la ficha de contacto y la trayectoria. Imprime todos los proyectos aunque
   haya un filtro activo y expande las URLs de los enlaces relevantes.
 - **Foto de perfil embebida** como `data:` URI, así el archivo sigue siendo autocontenido.
+- **Logos de GitHub y LinkedIn como SVG inline** (`<symbol>` + `<use>`): Lucide retiró los
+  íconos de marca de su set, así que no se pueden pedir por `data-lucide`. Si un nombre de
+  ícono no existe, el JS borra el `<i>` vacío para que no quede un hueco en el `gap`.
 
 ## Datos personales
 
-Los datos del hero (rol, base, experiencia, formación, método, idiomas) están en la
-`.badge-card` del hero, y la trayectoria en la sección `#trayectoria`. Si querés un portfolio
+Los datos del hero (rol, experiencia, formación, método, idiomas) están en la
+`.badge-card`, y la trayectoria en la sección `#trayectoria`.
+Los cuatro recuadros de abajo (`.stat`) son deliberadamente cualitativos —
+`4+`, `PBL`, `STEAM`, `IA` — para no exponer conteos de proyectos. Si querés un portfolio
 más corto, en la timeline de experiencia hay un comentario marcando los dos empleos no técnicos
 que se pueden borrar.
 
